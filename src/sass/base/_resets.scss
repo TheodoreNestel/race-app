@@ -1,0 +1,12 @@
+*,
+*::after,
+*::before{ /*by default browser have some styling we take those away with basic resets  */
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%; /*we need a way to have this value change based on a user's preference so its not forced at 10px
+                        so a user can change the desired fontsize by setting to 62.5 itll be 16 if the user doesnt touch their settings*/
+}

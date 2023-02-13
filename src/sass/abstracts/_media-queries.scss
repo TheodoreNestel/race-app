@@ -1,0 +1,32 @@
+
+
+
+
+//** RELATIVE UNITS IN MEDIQUERIES IGNORE ROOT FONT SIZE AND ALWAYS USE THE ONE PROVIDED BY BROWSER 
+// SO BY DEFAULT THAT IS 16PX NOT 10 LIKE WE HAVE OURS SET 
+//we also use em over rems bc the css gods said so so do the conversion theyre worth 16px per em 
+@mixin respond($breakpoint) {
+    //then we can use the scss directive @if to check which argument was passed in and apply to correct mixin from there
+
+    @if $breakpoint == phone { //if the arg is phone then ->
+        @media (max-width: 37.7em) {@content;} //apply the media query -600px
+    }
+
+    @if $breakpoint == tab-port { //if the arg is tab-port then ->
+        @media (max-width: 56.25em) {@content;} //apply the media query - 900px
+    }
+
+    @if $breakpoint == tab-land { //if the arg is tab-land then ->
+        @media (max-width: 75em) {@content;} //apply the media query - 1200px
+    }
+
+    @if $breakpoint == big-desktop { //if the arg is big-desktop then ->
+        @media (min-width: 112.5em) {@content;} //apply the media query - 1800+ px 
+    }
+    
+
+
+    //Order of changes : base + typo -> layout + grid -> page layout -> compo 
+
+
+}
