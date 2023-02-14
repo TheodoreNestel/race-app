@@ -1,0 +1,175 @@
+
+.form-container{
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+
+    .login-form-container__form{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4rem;
+            backdrop-filter: blur(3.6rem);
+            box-shadow:
+  0px 0.2px 10.6px rgba(215, 36, 131, 0.048),
+  0px 0.4px 27.5px rgba(215, 36, 131, 0.07),
+  0px 0.6px 56.3px rgba(215, 36, 131, 0.086),
+  0px 1px 112.3px rgba(215, 36, 131, 0.1),
+  0px 1.5px 216.8px rgba(215, 36, 131, 0.114),
+  0px 2.4px 323.3px rgba(215, 36, 131, 0.368),
+  0px 4px 405.1px rgba(215, 36, 131, 0.501),
+  0px 8px 471px rgba(215, 36, 131, 0.421)
+;
+;
+
+            border-radius: 37px;
+
+
+            width: 45rem;
+            height: 68rem;
+
+            
+
+            margin-right: 8rem;
+
+            &__title{
+                background: linear-gradient(90deg, #0AD3FF 6.86%, #D72483 94%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+
+                font-size: 4.8rem;
+
+                
+            }
+
+
+
+            //REALLY gross code I fucked up my html and was too tired / lazy to re-write all my classes and 
+            //redo my css 
+            &__password__reveal-button__img{
+                height: 4rem;
+                position: absolute;
+
+                right: 20%;
+                top: 46%;
+            }
+            &__userImg{
+                height: 4rem;
+                position: absolute;
+                left: 20%;
+                top: 31.5%;
+            }
+            &__pswImg{
+                height: 4rem;
+                position: absolute;
+                left: 20%;
+                top: 46%
+            }
+
+
+
+
+            &__username{
+                text-decoration: none;
+                border: none;
+                outline: none;
+                text-align: center;
+
+                width: 30rem;
+                height: 6rem;
+                border-radius: 2.1rem;
+                font-size: 1.6rem;
+                background-color: rgba(10 , 211 , 255 , 0.45);
+                color: rgba(255, 255, 255, 0.773);
+                &::placeholder{
+                    color: rgba(255, 255, 255, 0.773);
+                }
+
+                &:focus{
+                    background-color:  rgba(10, 210, 255, 0.747);
+                   }
+                   transition: linear .2s;
+
+              
+            }
+
+            &__password{
+                text-decoration: none;
+                border: none;
+                outline: none;
+                text-align: center;
+
+                width: 30rem;
+                height: 6rem;
+                border-radius: 2.1rem;
+                font-size: 1.6rem;
+                background-color: rgba(10 , 211 , 255 , 0.45);
+                color: rgba(255, 255, 255, 0.773);
+                &::placeholder{
+                    color: rgba(255, 255, 255, 0.773);
+                }
+
+                &:focus{
+                 background-color:  rgba(10, 210, 255, 0.747);
+                }
+                transition: linear .2s;
+            }
+
+            &__submit{
+                border: none;
+                outline: none;
+                text-decoration: none;
+                cursor: pointer;
+                width: 26rem;
+                height: 6rem;
+                border-radius: 2.1rem;
+                background-color: #ee1b8c;
+                color : #fff;
+                font-size: 24px;
+                letter-spacing: 0.05em;
+                margin-top: -3rem;
+
+                &:hover{
+                   // transform: scale(1.06);
+                    -webkit-box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+                    -moz-box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+                    box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+
+                }
+                &:active{
+                    transform: scale(0.98);
+                    -webkit-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                    -moz-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                    box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+
+                    transition: ease-in-out .09s;
+                }
+                transition: ease-in-out .3s;
+            }
+
+            &__new-user-link{
+                color: #0AD3FF;
+                font-size: 1.6rem;
+
+                &__click{
+                    color: #D72483;
+                    font-size: 1.6rem;
+                    cursor: pointer;
+                    transition: ease .1s;
+                    &:hover{
+                        color: #ff00bb;
+                       & > .login-form-container__form__new-user-link{
+                            color: #D72483;
+                       }
+                    }
+                }
+            }
+
+        }
+}
