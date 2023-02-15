@@ -1,4 +1,5 @@
 import { useState , useRef } from "react"
+import anime from "animejs"
 
 
 //this form will handle login or signup 
@@ -20,6 +21,10 @@ export default function LoginForm(props){
     const passwordVerificationRef = useRef()
 
     let pswCoin = false
+
+    const blurDivRef = useRef()
+    const anim = useRef()
+    const reverseAnim = useRef()
 
    
    
@@ -88,12 +93,87 @@ export default function LoginForm(props){
        
     }
 
+
+    //const blurDivRef = useRef(null);
+
+
+
+//function written by ChatGPT after several failed attempts on my end
+function handleCardSwitch() {
+  const blur = blurDivRef.current;
+
+  anime({
+    targets: blur,
+    duration: 500,
+    easing: 'easeInOutQuad',
+    update: function(anim) {
+      // get the current value of the animation
+      const blurValue = anim.progress * 0.5;
+      // apply the backdrop-blur filter to the box element
+      blur.style.backdropFilter = `blur(${blurValue}px)`;
+    },
+    complete: function() {
+      setIsNewUser(!isNewUser);
+      anime({
+        targets: blur,
+        duration: 500,
+        easing: 'easeInOutQuad',
+        update: function(anim) {
+          // get the current value of the animation
+          const blurValue = 50 - anim.progress * 0.5;
+          // apply the backdrop-blur filter to the box element
+          blur.style.backdropFilter = `blur(${blurValue}px)`;
+        },
+      });
+    },
+  });
+}
+
+
+
+function handleCardSwitch2() {
+    const loginForm = document.querySelector('.login-form-container__form');
+    const signupForm = document.querySelector('.signup-form-container__form');
+    
+    const animation = anime({
+      targets: '.form-container',
+      rotateY: {
+        value: '+=180',
+        easing: 'easeInOutSine',
+        duration: 500
+      },
+      complete: function(anim) {
+        if (loginForm.style.display !== 'none') {
+          loginForm.style.display = 'none';
+          signupForm.style.display = 'block';
+        } else {
+          loginForm.style.display = 'block';
+          signupForm.style.display = 'none';
+        }
+        anim.reset();
+      }
+    });
+  }
+      
+      
+      
+      
+
    
 
 
     return (
         
         <div className="form-container">
+
+        <div className="blur-div" ref={blurDivRef}
+        style={{
+            
+            backdropFilter: 'blur(0)'
+          }}
+        >
+
+        </div>
 
             { !isNewUser ? 
 
@@ -153,7 +233,7 @@ export default function LoginForm(props){
                 <p className="login-form-container__form__new-user-link">
                     Don't have an account<span
                     className="login-form-container__form__new-user-link__click"
-                    onClick={()=>{setIsNewUser(true)}}
+                    onClick={()=>{handleCardSwitch()}}
                     > Sign up
                     </span>
                 </p>
@@ -172,7 +252,7 @@ export default function LoginForm(props){
 
                 <img
                 className="signup-form-container__form__userImg"
-                src="#"
+                src="/assets/user.png"
                 alt="User placeholder Img"
                 />
 
@@ -187,66 +267,49 @@ export default function LoginForm(props){
                 
 
                 <img
-                className="signup-form-container__form__pswImg"
-                src="#"
+                className="signup-form-container__form__pswImg1"
+                src="/assets/lock.png"
                 alt="Lock Img"
                 />
 
                 <input
                 className="signup-form-container__form__password"
-                type={hidePsw}
+                type="text"
                 placeholder="Password"
                 ref={passwordRef}
                 onChange={(e)=>{handleChange(e)}}
                
                 />
 
-                <a className="signup-form-container__form__password__reveal-button">
-                    <img
-                    className="signup-form-container__form__password__reveal-button__img"
-                    src="#"
-                    alt="Reveal password Icon"
-                    onClick={()=>{return}}
-                    />
-                </a>
 
                 <img
-                className="signup-form-container__form__pswImg"
-                src="#"
+                className="signup-form-container__form__pswImg2"
+                src="/assets/lock.png"
                 alt="Lock Img"
                 />
 
                 <input
                 className="signup-form-container__form__password"
-                type={hidePsw}
+                type="text"
                 ref={passwordVerificationRef}
                 placeholder="Re-enter password"
                 onChange={(e)=>{handleChange(e)}}
                
-                />
-                
+                />                
 
 
-                <a className="signup-form-container__form__password__reveal-button">
-                    <img
-                    className="signup-form-container__form__password__reveal-button__img"
-                    src="#"
-                    alt="Reveal password Icon"
-                    onClick={()=>{return}}
-                    />
-                </a>
 
                 <button
-                className="form-container__form__submit"
+                className="signup-form-container__form__submit"
                 onClick={(e)=>{handleSignup(e)}}
                 >
                     Signup
                 </button>
 
-                <p className="login-form-container__form__new-user-link">
+                <p className="signup-form-container__form__new-user-link">
                     Already have an account <span
-                    className="login-form-container__form__new-user-link-click"
-                    onClick={()=>{setIsNewUser(false)}}
+                    className="login-form-container__form__new-user-link__click"
+                    onClick={()=>{handleCardSwitch()}}
                     > Sign in
                     </span>
                 </p>

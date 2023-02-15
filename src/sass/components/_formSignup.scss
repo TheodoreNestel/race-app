@@ -1,12 +1,22 @@
-
 .form-container{
    
     display: flex;
     align-items: center;
     justify-content: center;
-   
+    position: relative;
+    
+   .blur-div{
+    width: 45rem;
+    height: 68rem;
+    z-index: 10;
+    backdrop-filter: blur(0px);
+    position: absolute;
+    margin-right: 8rem;
+    border-radius: 37px;
+    pointer-events: none;
+   }
 
-    .login-form-container__form{
+    .signup-form-container__form{
             position: relative;
             display: flex;
             align-items: center;
@@ -25,20 +35,22 @@
 //   0px 8px 471px rgba(215, 36, 131, 0.421)
 // ;
 
-            box-shadow: 0 0 10px rgba(249, 2, 134, 0.858);
-            animation: box-shadow-animation 7s linear infinite;
 
-            @keyframes box-shadow-animation {
-                0% {
-                  box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
-                }
-                50% {
-                  box-shadow: 0 0 30px #0AD3FF;
-                }
-                100% {
-                  box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
-                }
-              }
+box-shadow: 0 0 10px rgba(249, 2, 134, 0.858);
+animation: box-shadow-animation 7s linear infinite;
+
+@keyframes box-shadow-animation {
+    0% {
+      box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
+    }
+    50% {
+      box-shadow: 0 0 30px #0AD3FF;
+    }
+    100% {
+      box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
+    }
+  }
+    
 
 
 
@@ -66,28 +78,32 @@
 
 
 
-            //REALLY gross code I fucked up my html and was too tired / lazy to re-write all my classes and 
-            //redo my css 
-            &__password__reveal-button__img{
-                height: 4rem;
-                position: absolute;
 
-                right: 20%;
-                top: 46%;
-            }
+            //signup-form-container__form
+
+            //REALLY gross code I fucked up my html and was too tired / lazy to re-write all my classes and 
+          
             &__userImg{
                 height: 4rem;
                 position: absolute;
                 left: 20%;
-                top: 31.5%;
+                top: 29.5%;
             }
-            &__pswImg{
+            &__pswImg1{
                 height: 4rem;
                 position: absolute;
                 left: 20%;
-                top: 46%
+                top: 58.9%;
+                
             }
 
+            &__pswImg2{
+                height: 4rem;
+                position: absolute;
+                left: 20%;
+                top: 44%;
+                //background-color: cyan;
+            }
 
 
 
@@ -149,7 +165,7 @@
                 color : #fff;
                 font-size: 24px;
                 letter-spacing: 0.05em;
-                margin-top: -3rem;
+                margin-top: -2rem;
 
                 &:hover{
                    // transform: scale(1.06);
