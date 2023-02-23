@@ -1,9 +1,11 @@
 @import './abstracts/media-queries';
 @import './base/resets';
 @import './page/mainpage';
+@import './page/mappage';
+@import './components/edit-form';
 @import './components/form';
 @import './components/formSignup';
-
+@import './components/race-card';
 
 h1{
     color: cyan;

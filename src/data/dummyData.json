@@ -1,0 +1,81 @@
+{
+    "Data" :{
+        "userInfo" : {
+            "username" : "Mistral",
+            "carMake" : "Honda",
+            "carModel" : "Civic Type R",
+            "hp" : 305,
+            "userPfp" : "/assets/user.png"
+        },
+        "userRaces" : [
+            {
+                "status" : true,
+                "topspeed": "",
+                "start" : "a location",
+                "finish" : "a location",
+                "distance" : 1.0,
+                "date" : "02/02/22",
+                "carMake" : "Honda",
+                "carModel" : "Civic Type R",
+                "hp" : 305,
+                
+                "racer" : {
+                            "carMake" : "opponent car make",
+                            "carModel" : "opponent car model",
+                            "hp" : "opponent car hp",
+                            "racerPfp" : "/assets/lock.png"
+                        },
+                "knownRacer" : "blank if unregister racer otherwise : data in the same format as userInfo"
+            },
+            {
+                "status" : false,
+                "topspeed": 90,
+                "start" : "starting coords whatever format google map api needs",
+                "finish" : "ending coords whatever format google map api needs",
+                "distance" : 1.0,
+                "date" : "02/02/22",
+                "carMake" : "Honda",
+                "carModel" : "Civic Type R",
+                "hp" : 305,
+                "racer" : {"racerPfp" : "/assets/lock.png"},
+                "knownRacer" : "blank if unregister racer otherwise : data in the same format as userInfo"
+            },
+            {
+                "status" : true,
+                "topspeed": 87,
+                "start" : "starting coords whatever format google map api needs",
+                "finish" : "ending coords whatever format google map api needs",
+                "distance" : 1.0,
+                "date" : "02/02/22",
+                "carMake" : "Honda",
+                "carModel" : "Civic Type R",
+                "hp" : 305,
+                "racer" : {
+                            "carMake" : "opponent car make",
+                            "carModel" : "opponent car model",
+                            "hp" : "opponent car hp",
+                            "racerPfp" : "/assets/lock.png"
+                        },
+                "knownRacer" : "blank if unregister racer otherwise : data in the same format as userInfo"
+            },
+            {
+                "status" : true,
+                "topspeed": "",
+                "start" : "starting coords whatever format google map api needs",
+                "finish" : "ending coords whatever format google map api needs",
+                "distance" : 1.0,
+                "date" : "02/02/22",
+                "carMake" : "Toyota",
+                "carModel" : "GR Supra",
+                "hp" : 605,
+                "racer" : {
+                            "carMake" : "opponent car make",
+                            "carModel" : "opponent car model",
+                            "hp" : "opponent car hp",
+                            "racerPfp" : "/assets/lock.png"
+                        },
+                "knownRacer" : "blank if unregister racer otherwise : data in the same format as userInfo"
+            }
+        ]
+    }
+}

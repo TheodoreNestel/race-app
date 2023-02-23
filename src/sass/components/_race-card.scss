@@ -1,0 +1,370 @@
+.map-page{
+
+
+    &__data-card{
+        //background-color: cyan;
+        width: 50rem;
+        height: 80rem;
+        backdrop-filter: blur(1.6rem);
+        border-radius: 3.7rem;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 2rem;
+
+
+        box-shadow: 0 0 10px rgba(249, 2, 134, 0.858);
+        animation: box-shadow-animation 7s linear infinite;
+
+        @keyframes box-shadow-animation {
+            0% {
+              box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
+            }
+            50% {
+              box-shadow: 0 0 30px #0AD3FF;
+            }
+            100% {
+              box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
+            }
+          }
+
+
+        //the top of the file race summary
+        &__race-summary{
+            //background-color: bisque;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 2rem;
+           
+            
+
+
+
+            //the title and portraits on the 
+            //expanded race 
+            //two ims and the title
+            &__result-head{
+               
+
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                //take up the entire width of the card
+                width: 100%;
+                //some margin at the top
+               
+
+                //ADD WIN OR LOSE CLASS THAT CAN BE TOGGLE
+
+
+                //icon for the user 
+                &__user-icon{
+                    border-radius: 50%;
+                    border: 3px solid rgb(252, 32, 32);
+                    height: 8rem;
+                }
+
+                //racer icon
+                &__racer-icon{
+                    border-radius: 50%;
+                    //background-color: cyan;
+                    border: 3px solid rgb(7, 255, 7);
+                    height: 8rem;
+                }
+                //result title zone line and title
+                &__result-title-zone{
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                   
+
+                    //RESULT title 
+                    &__title{
+                        color: aquamarine;
+                        font-size: 3.2rem;
+                        letter-spacing: 0.2rem;
+                        background: linear-gradient(90deg, #0AD3FF 6.86%, #D72483 94%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        text-fill-color: transparent;
+                    }
+
+                   
+                }
+
+            }
+
+
+
+            //car / race data for expanded race
+            &__racer-data{
+                //background-color: pink;
+                width: 100%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+               
+
+                &__cars{
+                    //background-color: coral;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 100%;
+                    text-align: center;
+                    position: relative;
+                    margin-top: 1rem;
+                    color: white;
+                   
+                    &__user-car{
+                        font-size: 1.6rem;
+                        width: 33%;
+                        color: white;
+                    }
+                    &__racer-car{
+                        font-size: 1.6rem;
+                        width: 33%;
+                        color: white;
+                    }
+                    &__title{
+                       // position: absolute;
+                        font-size: 2.4rem;
+                        text-align: center;
+                        color: white;
+                        
+                    }
+                }
+
+                &__hp{
+                    //background-color: #0AD3FF;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 100%;
+                    text-align: center;
+                    position: relative;
+                    margin-top: 1rem;
+                    color: white;
+                    
+
+                    &__user-hp{
+                        font-size: 1.6rem;
+                        width: 33%;
+                        color: white;
+                    }
+                    &__racer-hp{
+                        font-size: 1.6rem;
+                        width: 33%;
+                        color: white;
+                    }
+                    &__title{
+                       // position: absolute;
+                        font-size: 2.4rem;
+                        text-align: center;
+                        color: white;
+                        
+                    }
+                    
+
+                }
+
+                &__race-summary{
+                    //background-color: rgb(255, 3, 45);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-top: 1rem;
+                    color: white;
+                    margin-top: 2rem;
+
+                    &__date{
+                        font-size: 1.6rem;
+                        color: white;
+                        margin-top: 1rem;
+                    }
+                    &__speed{
+                        font-size: 2.4rem;
+                        color: white;
+                        margin-top: 1rem;
+                    }
+                    &__distance{
+                        font-size: 2.4rem;
+                        color: white;
+                        margin-top: 1rem;
+                    }
+                }
+            }
+
+        }
+
+
+        &__most-recent-races{
+            //background-color: yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: scroll;
+            flex-direction: column;
+            margin-top: 0.5rem;
+            gap: 1rem;
+            height: 40%;
+            width: 85%;
+            border-top: 2px solid #D72483;
+            //this selector doesnt work for some reason
+            &__race-box{
+                background-color: cyan;
+            }
+        }
+
+        
+
+
+
+        //ui element container
+        &__UI-box{
+            background-color: azure;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 90%;
+            height: 6rem;
+            margin: 2rem;
+            
+            background-color: black;
+            border-radius: 1.7rem;
+            //bell icon box
+            &__notifications{
+                 :hover{
+                        animation: shake 0.5s;
+                    }
+                &__icon-img{
+                    height: 40%;
+                    width: 80%;
+                   
+                    //background-color: cyan;
+                }
+            }
+            //profile icon box
+            &__profile-icon{
+                cursor: pointer;
+                &__pfp-img{
+                    height: 6rem;
+                   &:hover{
+                    transform: scale(1.09);
+                   }
+                   transition: 0.2s linear;
+                }
+            }
+            //logout box
+            &__logout-button{
+                &__logout-text{
+                    background: linear-gradient(90deg, #D72483 6.86%, #0AD3FF 94%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        text-fill-color: transparent;
+                        font-size: 2.4rem;
+                        transition: .2s linear;
+                        cursor: pointer;
+
+                    &:hover{
+                        transform: scale(1.08);
+                    }
+                }
+            }
+
+
+
+            @keyframes shake {
+                10%, 90% {
+                  transform: translate3d(-1px, 0, 0);
+                }
+                20%, 80% {
+                  transform: translate3d(2px, 0, 0);
+                }
+                30%, 50%, 70% {
+                  transform: translate3d(-4px, 0, 0);
+                }
+                40%, 60% {
+                  transform: translate3d(4px, 0, 0);
+                }
+              }
+              
+
+
+
+        }
+    }
+}
+
+
+//this works but nesting does not for some reason
+.map-page__data-card__race-summary__most-recent-races__race-box{
+    //background-color: cyan;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 99%;
+    background-color: rgba(0, 0, 0, 0.487);
+    border-radius: 2rem;
+
+    border: 1px solid #0ad2ff35;
+    height: 6rem;
+    transition: .1s linear;
+
+
+    &:hover{
+        transform: scale(0.97);
+        border: 1px solid #0ad2ff9d;
+
+    }
+
+
+
+    //NEED A TOGGLE CLASS FOR TEXT COLOR
+    &__user{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        width: 33%;
+
+        &__pfp{
+            height: 5rem;
+        }
+    }
+    &__vs{
+        color: white;
+        font-size: 1.5rem;
+        width: 33%;
+        text-align: center;
+    }
+    &__racer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        width: 33%;
+
+        &__pfp{
+            height: 5rem;
+        }
+    }
+    
+
+}
