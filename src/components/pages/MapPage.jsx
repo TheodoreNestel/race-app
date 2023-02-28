@@ -93,6 +93,7 @@
     import UserInfo from "../components/UserInfo"
     import dummyData from "../../data/dummyData.json"
     import { useState , useRef } from "react"
+    import anime from "animejs"
 
     export default function MapPage(props){
 
@@ -102,35 +103,31 @@
             //if no racer is filled when adding a race add placeholders
 
        
-       
-
         //we will store the current focused on race in state and use it fill out all the stuff 
-        const [focusedRace , setFocusedRace] = useState(dummyData.Data.userRaces[0])
+        const [focusedRace , setFocusedRace] = useState(props.userData.userRaces[0])
 
 
         //to open the edit card option 
         const [editUser , setEditUser] = useState(false)
 
         //state to keep track of user's profile changes without needing a new call to the backend
-        const [userData , setUserData] = useState(dummyData.Data.userInfo)
+        const [userData , setUserData] = useState(props.userData.userInfo)
 
-        console.log(userData)
-
-
-
-
-
-        //this function is called when the user wants to see their profile
-        function serveProfile(e){
+        
+        //animation code for this page 
+    
+        //we call this to switch between the two cards
+        const editUserRef = useRef()
+        const mainRef = useRef()
+        function animateSwitch(){
+            //**jun help */
+            setEditUser(!editUser)
 
         }
 
-
-
-
        
 
-        
+        console.log(editUserRef , "what is this ref?")
 
 
 
@@ -139,11 +136,15 @@
         <div className="map-page">
 
                 {
-                    editUser ?  <UserInfo data={dummyData} close={setEditUser}  setNewData={setUserData}/> : ""
-                }
-               
-
-                {/* this is the div that will be the main card */}
+                    
+                    editUser ?  <UserInfo
+                    data={props.userData.userInfo}
+                    close={animateSwitch} 
+                    setNewData={setUserData}
+                    /> : 
+                   
+    
+              
                 <div className="map-page__data-card">
 
 
@@ -235,7 +236,7 @@
                          {/*This div contains the shortned most recent races*/}
                          <div className="map-page__data-card__most-recent-races">
                                         {
-                                            dummyData.Data.userRaces.map((race)=>{
+                                            props.userData.userRaces.map((race)=>{
                                                 if(race === focusedRace){
                                                     return( <SummarizedRace
                                                     race={race}
@@ -264,7 +265,7 @@
                             <a className="map-page__data-card__UI-box__notifications">
                                 <img
                                 className="map-page__data-card__UI-box__notifications__icon-img"
-                                src="/assets/lock.png"
+                                src="/assets/bell.png"
                                 />
                             </a>
 
@@ -278,7 +279,10 @@
                                 />
                             </a>
 
-                            <a className="map-page__data-card__UI-box__logout-button">
+                            <a
+                            className="map-page__data-card__UI-box__logout-button"
+                            onClick={()=> props.setPage("mainPage")}
+                            >
                                 <h3 className="map-page__data-card__UI-box__logout-button__logout-text">Logout</h3>
                             </a>
 
@@ -286,6 +290,10 @@
 
 
                 </div>
+
+               }
+
+                
 
 
                 {/*Need to begin using the google maps api before I can code this one*/}

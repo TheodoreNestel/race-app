@@ -6,16 +6,15 @@
 //this component will be async as this will be in charge of the patch request
 
 import { useState , useRef } from "react"
-import dummyData from "../../data/dummyData.json"
 import AvatarEditor from "react-avatar-editor"
 export default function UserInfo(props){
 
     
-
+    console.log(props.data)
 
     //this will be where we keep track of a user's current data if this object is edited
     //and the back button is hit this will be set to the server to edit a user's info
-    const [userData , setUserData] = useState({...props.data.Data.userInfo})
+    const [userData , setUserData] = useState({...props.data})
     //in tandem with the above state this will keep track of wether or not handleEdit has been called
     //if it has then the user has changed their data and a call to the server needs to be made to update the new datas
     const hasbeenEdited = useRef(false)
@@ -33,19 +32,19 @@ export default function UserInfo(props){
     //state to track wether or not we are editing a particular option / all changes in the input
     const [editUsername , setEditUsername] = useState({
         status : false,
-        username : props.data.Data.userInfo.username
+        username : props.data.username
     })
     const [editCarMake , setEditCarMake] = useState({
         status : false,
-        carMake : props.data.Data.userInfo.carMake
+        carMake : props.data.carMake
     })
     const [editCarModel , setEditCarModel] = useState({
         status : false,
-        carModel : props.data.Data.userInfo.carModel
+        carModel : props.data.carModel
     })
     const [editHp , setEditHp] = useState({
         status : false, 
-        hp : props.data.Data.userInfo.hp
+        hp : props.data.hp
     })
     const [editImg , setEditImg] = useState({
         status : false,
@@ -203,7 +202,7 @@ export default function UserInfo(props){
         //not async yet 
         function handleExit(){
             props.setNewData(userData)
-            props.close(false)
+            props.close()
         }
 
 

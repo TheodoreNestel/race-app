@@ -58,8 +58,22 @@ export default function LoginForm(props){
                 userName ,
                 password
             })
-        
+
+
+            //call an async function here to send user's login info to the back end and test if the values are legal
+            
+            //then if we we get data back and not a 404 then we can change cards with the new data 
+            //new data is props.SetData then we switch to the next page
+            props.setPage("mapPage")
     }
+
+
+
+    async function tryLogin(){
+      //make a request to the back end if we have a returning user to try and authenticate him 
+    }
+
+
 
     function handleSignup(e){
         e.preventDefault()
@@ -77,6 +91,10 @@ export default function LoginForm(props){
             //placeholder logic
             alert("passwords do not match")
         }
+
+
+        //async request to create the user / then request the empty user and return it to populate the next page
+        //then we switch page since the data is populated using props.setData to the newly returned signuped User obj
     }
 
     function handleReveal(state){
