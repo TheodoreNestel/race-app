@@ -15,7 +15,7 @@ export default function MainPage(props){
     //can I use a useEffect to wait for data to be fill before making an asyn call to the back end ? 
     //Might be best to let the form it self check for login so data is more localized
 
-    console.log(formData , "current form data")
+    //console.log(formData , "current form data")
 
     return (
        <div className="main-page">

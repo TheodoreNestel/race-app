@@ -33,7 +33,7 @@
         //         carMake : "user's car make ie: Honda",
         //         carModel : "User's car model ie : Type R",
         //         hp : "user's car horsepower ie : 305",
-        //         userPfp : "user's pfp in whatever format that is"
+        //         userPfp : "/assets/user.png"
         //     },
         //     userRaces : [
         //         {
@@ -113,6 +113,8 @@
         //state to keep track of user's profile changes without needing a new call to the backend
         const [userData , setUserData] = useState(props.userData.userInfo)
 
+        //props.userData.userInfo
+        //props.userData.userRaces[0]
         
         //animation code for this page 
     
@@ -127,9 +129,6 @@
 
        
 
-        console.log(editUserRef , "what is this ref?")
-
-
 
         return(
 
@@ -138,19 +137,25 @@
                 {
                     
                     editUser ?  <UserInfo
-                    data={props.userData.userInfo}
+                    data={userData}
                     close={animateSwitch} 
                     setNewData={setUserData}
-                    /> : 
+                    /> 
+                    
+                    : 
                    
     
               
                 <div className="map-page__data-card">
 
 
-                        {/* The part of the data card that has the expanded race info */}
+                      
+                      {  
+
+                      focusedRace ?
                         <div className="map-page__data-card__race-summary">
-                                {/* the main title with the user icon and the icon highlight based on win or loss */}
+
+                            
                                 <div className="map-page__data-card__race-summary__result-head">
 
                                     {/*Needs a toggle class based on win or loss*/}
@@ -175,9 +180,8 @@
                                     />
 
                                 </div>
-
-                                {/*This div contains the info on the user's car and the racer's*/}
-                                {/*This div breaks down all the data into three other divs for styling*/}
+                                
+                               
                                 <div className="map-page__data-card__race-summary__racer-data">
 
                                     {/*Div for car data*/}
@@ -227,14 +231,22 @@
                                             
 
                                 </div>
-                                
+                               
 
                         </div>
+                        : 
+                        <div className="map-page__data-card__summary-placeholder">
+                        <h4 className="map-page__data-card__summary-placeholder__summary">No Selected Race</h4>
+                        </div>
+                        }
 
 
 
                          {/*This div contains the shortned most recent races*/}
-                         <div className="map-page__data-card__most-recent-races">
+
+                        { 
+                            focusedRace ?
+                            <div className="map-page__data-card__most-recent-races">
                                         {
                                             props.userData.userRaces.map((race)=>{
                                                 if(race === focusedRace){
@@ -255,7 +267,13 @@
                                                )
                                             })
                                         }
-                                </div>
+                            </div>
+                            :
+                            <div className="map-page__data-card__placeholder">
+                            <p className="map-page__data-card__placeholder__p">
+                            Your races will be displayed here click the plus button on the right to get started</p>
+                            </div>
+                         }
 
 
 

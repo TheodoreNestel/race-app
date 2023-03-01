@@ -1,5 +1,6 @@
 import { useState , useRef } from "react"
 import anime from "animejs"
+import axios from "axios"
 
 
 //this form will handle login or signup 
@@ -10,9 +11,12 @@ export default function LoginForm(props){
 
     //this will determine if we are authenticating a new user or if we are serving a signup form
     const [isNewUser , setIsNewUser] = useState(false)
+    
+    //LOGIN STATE
+    const [userCreds , setUserCreds] = useState()
 
     //controlled input state
-    const [userName , setUsername] = useState()
+    const [username , setUsername] = useState()
     const [password , setPassword] = useState()
     const [rePassword , setRepassword] = useState()
 
@@ -42,8 +46,47 @@ export default function LoginForm(props){
 
     
 
-       console.log(userName, password ,"Local state" )
+       console.log(username, password ,"Local state" )
     }
+
+
+
+
+    //this function will attempt login if its successful it will return the all of the user's data
+    async function tryLogin(loginCredentials){
+
+      console.log(loginCredentials)
+      try{
+       const res = await axios.post('http://localhost:9000/login' , loginCredentials)
+       console.log(res , "the returned res from server")
+      props.setData(res.data) //this function will return a user's data so we can populate the map page
+      props.setPage("mapPage")
+     
+      }
+      catch(error){
+        console.log(error , "error from our backend")
+      }
+
+      //based on the returned value from this request we switch page and add the user's data (all of it)
+
+     
+
+  }
+
+
+    async function trySignup(signUpInfo){
+      try{
+        const res = await axios.post('http://localhost:9000/signup',signUpInfo)
+        console.log(res.data)
+        props.setData(res.data) //this function will return a user's data so we can populate the map page
+        props.setPage("mapPage")
+      }
+      catch(error){
+        console.log(error , "Failure to signup")
+        //do something else (flash reason why signup failed)
+      }
+    }
+
 
 
     //sets the state on the parent component with the data aquired here 
@@ -51,27 +94,24 @@ export default function LoginForm(props){
         //prevent page refresh
         e.preventDefault()
 
-        //if its not a new user we let them submit their credentials
-        
-            props.setUserInfo({
-                newUser : isNewUser,
-                userName ,
-                password
-            })
 
+        //if these fields are populated we can submit a authentication request
+            if(username && password){
+              tryLogin({username , password});
+            }
+            else{
+              //Logic pendin (flash probably) **JUN
+            }
 
-            //call an async function here to send user's login info to the back end and test if the values are legal
             
-            //then if we we get data back and not a 404 then we can change cards with the new data 
-            //new data is props.SetData then we switch to the next page
-            props.setPage("mapPage")
+
+            
+
+            
     }
 
 
 
-    async function tryLogin(){
-      //make a request to the back end if we have a returning user to try and authenticate him 
-    }
 
 
 
@@ -83,9 +123,11 @@ export default function LoginForm(props){
 
             props.setUserInfo({
                 newUser : isNewUser,
-                userName ,
+                username ,
                 password
             })
+
+            trySignup({username , password})
         }
         else{
             //placeholder logic
@@ -93,8 +135,7 @@ export default function LoginForm(props){
         }
 
 
-        //async request to create the user / then request the empty user and return it to populate the next page
-        //then we switch page since the data is populated using props.setData to the newly returned signuped User obj
+        
     }
 
     function handleReveal(state){

@@ -31,7 +31,40 @@
           }
 
 
-        //the top of the file race summary
+        
+
+
+        //the two placeholders for new user's when they dont have data to display yet
+        &__summary-placeholder{
+            //color: cyan;
+            //background-color: chartreuse;
+            height: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__summary{
+                color: #ffffff;
+                font-size: 3rem;
+            }
+        }
+
+        &__placeholder{
+            //color: cyan;
+            //background-color: cornflowerblue;
+            height: 50%;
+            width: 90%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__p{
+                color: #ffffff;
+                font-size: 1.8rem;
+            }
+        }
+
+
         &__race-summary{
             //background-color: bisque;
 
@@ -59,8 +92,6 @@
                 width: 100%;
                 //some margin at the top
                
-
-                //ADD WIN OR LOSE CLASS THAT CAN BE TOGGLE
 
 
                 //icon for the user 

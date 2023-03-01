@@ -100,3 +100,97 @@ DATA STRUCTURE
         //     ]
         // }
 
+
+
+
+
+
+
+the mongo schema chatgpt made 
+
+
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const RaceSchema = new Schema({
+  status: {
+    type: Boolean, // true if user won the race, false if lost
+    required: true
+  },
+  topspeed: {
+    type: Number // top speed achieved during the race (Optional)
+  },
+  start: {
+    type: String, // starting coords whatever format google map api needs
+    required: true
+  },
+  finish: {
+    type: String, // ending coords whatever format google map api needs
+    required: true
+  },
+  carMake: {
+    type: String, // user's car make ie: Honda
+    required: true
+  },
+  carModel: {
+    type: String, // User's car model ie : Type R
+    required: true
+  },
+  hp: {
+    type: Number, // user's car horsepower ie : 305
+    required: true
+  },
+  racer: {
+    carMake: {
+      type: String, // opponent car make
+      required: true
+    },
+    carModel: {
+      type: String, // opponent car model
+      required: true
+    },
+    hp: {
+      type: Number, // opponent car hp
+      required: true
+    },
+    racerPfp: {
+      type: String, // default img selected for unknown racers
+      required: true
+    }
+  },
+  knownRacer: {
+    type: Schema.Types.Mixed // blank if unregister racer otherwise : data in the same format as userInfo
+  }
+});
+
+const UserSchema = new Schema({
+  userInfo: {
+    username: {
+      type: String, // User's username
+      required: true
+    },
+    carMake: {
+      type: String, // user's car make ie: Honda
+      required: true
+    },
+    carModel: {
+      type: String, // User's car model ie : Type R
+      required: true
+    },
+    hp: {
+      type: Number, // user's car horsepower ie : 305
+      required: true
+    },
+    userPfp: {
+      type: String, // user profile picture path
+      required: true
+    }
+  },
+  userRaces: {
+    type: [RaceSchema], // array of user races
+    default: []
+  }
+});
+
+module.exports = mongoose.model('User', UserSchema);
