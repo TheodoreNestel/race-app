@@ -5,12 +5,15 @@
 //this component will display all info the system has on the user and give the user the option to edit / add more 
 //this component will be async as this will be in charge of the patch request
 
+import axios from "axios"
 import { useState , useRef } from "react"
 import AvatarEditor from "react-avatar-editor"
+import { toast , ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function UserInfo(props){
 
     
-    console.log(props.data)
+    //console.log(props.data)
 
     //this will be where we keep track of a user's current data if this object is edited
     //and the back button is hit this will be set to the server to edit a user's info
@@ -24,9 +27,11 @@ export default function UserInfo(props){
     const editorRef = useRef()
     //state that keeps track of the scale the user input
     const [scale , setScale] = useState(1)
-    //state use to keep track of rotation 
-    const [rotate, setRotate] = useState(0);
+    
 
+    //to keep a copy of the original for edits sake
+    const [original , setOriginal] = useState(props.data)
+    
   
 
     //state to track wether or not we are editing a particular option / all changes in the input
@@ -48,7 +53,7 @@ export default function UserInfo(props){
     })
     const [editImg , setEditImg] = useState({
         status : false,
-        img : "/assets/user.png"
+        img : props.data.userPfp
     })
 
     
@@ -115,7 +120,7 @@ export default function UserInfo(props){
 
             }))
 
-            console.log(editCarMake , editCarModel , editUsername)
+            //console.log(editCarMake , editCarModel , editUsername)
 
             //assemble all the data into a single object
             if(!newData)setUserData({
@@ -183,24 +188,62 @@ export default function UserInfo(props){
     }
 
     //function that saves the user's modified img with the crop tool 
-    const handleSave = () => {
+    const handleSave = async () => {
         const canvas = editorRef.current.getImage();
         const croppedImage = canvas.toDataURL();
+
         // do something with the cropped image
+        //set it as a dataUrl for the user to see immediatly 
         setEditImg((prevState) => ({
           ...prevState,
           img: croppedImage
         }));
+
       };
+
+
+
+    // const handleSave = () => {
+    //     if (editorRef.current) {
+    //       const canvas = editorRef.current.getImage();
+    //       canvas.toBlob((blob) => {
+    //         const croppedImage = new File([blob], "avatar.png", { type: "image/png" });
+    //         setEditImg((prevState) => ({
+    //           ...prevState,
+    //           img: croppedImage,
+    //         }));
+    //       }, "image/png");
+    //     }
+    //   };
+      
     //console.log(editImg.img , "current Img") //large weird file
 
 
-    ////async function / post / patch request would be here 
-    //and be lauched via the back button that closes this component
-        //password updates will require a request for safty as to not save it on the machine in any data obj
+        async function updateUser(){
+
+            
+            //we craft the payload
+            const dataUpdatePayload = {
+                username : original.username,
+                updatedUser : userData
+            }
+            console.log(dataUpdatePayload , "the payload")
+
+            try {
+                const response = await axios.put('http://localhost:9000/edituser', dataUpdatePayload);
+                console.log(response.data , "data back from put front end");
+                //return response.data;
+              }
+              catch (error) {
+                console.error(error , "no");
+                toast.error(error.response.data.message)
+              }
+        }
 
         //not async yet 
         function handleExit(){
+            
+            updateUser()
             props.setNewData(userData)
             props.close()
         }
@@ -212,6 +255,8 @@ export default function UserInfo(props){
 
     
        <div className="user-info-card">
+
+        <ToastContainer />
 
    
 

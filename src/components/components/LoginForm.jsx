@@ -1,6 +1,8 @@
 import { useState , useRef } from "react"
 import anime from "animejs"
 import axios from "axios"
+import { toast , ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 //this form will handle login or signup 
@@ -64,7 +66,8 @@ export default function LoginForm(props){
      
       }
       catch(error){
-        console.log(error , "error from our backend")
+        console.log(error , "error from our backend" , error.response.data.message)
+        toast.error(error.response.data.message)
       }
 
       //based on the returned value from this request we switch page and add the user's data (all of it)
@@ -83,7 +86,7 @@ export default function LoginForm(props){
       }
       catch(error){
         console.log(error , "Failure to signup")
-        //do something else (flash reason why signup failed)
+        toast.error(error.response.data.message)
       }
     }
 
@@ -100,7 +103,7 @@ export default function LoginForm(props){
               tryLogin({username , password});
             }
             else{
-              //Logic pendin (flash probably) **JUN
+              return
             }
 
             
@@ -225,6 +228,8 @@ function handleCardSwitch2() {
         
         <div className="form-container">
 
+        <ToastContainer />
+
         <div className="blur-div" ref={blurDivRef}
         style={{
             
@@ -296,6 +301,7 @@ function handleCardSwitch2() {
                     > Sign up
                     </span>
                 </p>
+
                
             </form>
 

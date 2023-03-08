@@ -27,19 +27,14 @@ TODO
 
 
 
-        //Thursday 2/16/22
-            //-create the data object structure
-            //-create summarisedRace component
-            //-create the user's profile page / the ability to create a new data object with new userData
-            //-populate all fields with dummy data for styling 
+        //LEFT TODO MARCH
 
-        //Friday 2/17/22
-            //-Style the available parts of this page 
-            //-Media-Queries / optimize site for mobile / other screen sizes 
-        
-        //Monday 2/20/22
-            //begin research on Node Express for the backend 
-            //(Tentative) Setup Node Express backend 
+          //Hook up the Google maps api 
+          //Create a new component (AddRace) which will use the google maps api to add new races to the back end 
+          //Add error handling on the front end so a user knows whats going on (wrong login credential Server error etc.)
+          //final pass Make sure everything is gucci prior to launch (anim work / new - updated scss)
+
+          //ETA Sunday March 12 for completion will launch sometime that week
 
 
 

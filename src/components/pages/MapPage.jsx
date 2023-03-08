@@ -1,27 +1,7 @@
 
 
 
-//This is the map page that will have all of the google maps logic as well as our back end calls for data
 
-//this page will need to :
-    //get state from App's userState if an authentication went through that state should contain all the necessary data to populate this page (returned from our backend the calls will be made in Login and the data will be passed up to app)
-    //- User account info 
-        //username 
-        //Profile-picture 
-        //user car info (hp , make , model)
-        //All race data 
-            //start and finish location of race 
-            //top speed 
-            //other racer (only one other racer for version1.0)
-                //name (potential for @ing other Race-app users *tentative*)
-                //car (make model , hp (if known)) **optional
-            //race outcome (win or loss)
-            //option to delete a race would go here as well 
-            //when a race is clicked on the map it should expand on it in the card 
-    //This page will also need to let the user add new races (pending on api and how I can feed it data)***
-
-    //This Page will funcion differently on mobile so add an element that hide or reveal the entire card based on state
-    //we can use anime js to hide and reveal this component based on a click 
 
 
 
@@ -83,7 +63,7 @@
         // }
 
 
-
+//google api key : AIzaSyAwemI1ofx4QTEP02XsnbnovxyBAI_Rrks
 
         //TODO still 
         //add a notification  component (for later expansion)
@@ -94,6 +74,10 @@
     import dummyData from "../../data/dummyData.json"
     import { useState , useRef } from "react"
     import anime from "animejs"
+    //logic to toast a user if something goes wrong with any of our async functions s
+    import { toast , ToastContainer} from 'react-toastify';
+    import 'react-toastify/dist/ReactToastify.css';
+    
 
     export default function MapPage(props){
 
