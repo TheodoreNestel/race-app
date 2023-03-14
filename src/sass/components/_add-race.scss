@@ -1,0 +1,305 @@
+.map-page-google-map-container__Add-race-container{
+    backdrop-filter: blur(3.6rem);
+    z-index: 10;
+    position: absolute;
+
+    right: 3rem;
+    top: 15rem;
+
+    height: 35rem;
+    width: 25rem;
+
+    border-radius: 3rem;
+    
+
+    box-shadow: 0 0 10px rgba(249, 2, 134, 0.858);
+    animation: box-shadow-animation 7s linear infinite;
+
+    @keyframes box-shadow-animation {
+        0% {
+          box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
+        }
+        50% {
+          box-shadow: 0 0 30px #0AD3FF;
+        }
+        100% {
+          box-shadow: 0 0 30px rgba(249, 2, 134, 0.858);
+        }
+      }
+    
+    &__xout{
+        position: absolute;
+        right: -1rem;
+        width: 5rem;
+        top: -1rem;
+        cursor: pointer;
+    }
+
+    &__coord-div{
+
+        height: 35rem;
+        width: 25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 2rem;
+        gap: 3rem;
+
+       
+
+        &__title{
+            text-align: center;
+            color: white;
+            width: 90%;
+            font-size: 1.7rem;
+        }
+
+        &__coord1{
+            color: white;
+            font-size: 1.3rem;
+        }
+        &__coord2{
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        &__btn{
+            border: none;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+            width: 6rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            background-color: #0AD3FF;
+            color : #fff;
+            
+            letter-spacing: 0.05em;
+            &:hover{
+                // transform: scale(1.06);
+                 -webkit-box-shadow: 0px 0px 15px 7px rgba(192, 42, 157, 0.852);
+                 -moz-box-shadow: 0px 0px 15px 7px rgba(192, 42, 157, 0.852);
+                 box-shadow: 0px 0px 15px 7px rgba(192, 42, 157, 0.852);
+
+             }
+             &:active{
+                 transform: scale(0.98);
+                 -webkit-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                 -moz-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                 box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+
+                 transition: ease-in-out .09s;
+             }
+             transition: ease-in-out .3s;
+           
+        }
+        &__btn2{
+            border: none;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+            width: 6rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            background-color: #ee1b8c;
+            color : #fff;
+            
+            
+            letter-spacing: 0.05em;
+            &:hover{
+                // transform: scale(1.06);
+                 -webkit-box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+                 -moz-box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+                 box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+
+             }
+             &:active{
+                 transform: scale(0.98);
+                 -webkit-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                 -moz-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                 box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+
+                 transition: ease-in-out .09s;
+             }
+             transition: ease-in-out .3s;
+        }
+    }
+
+    &__racer-info-div{
+       
+        height: 35rem;
+        width: 25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        &__title{
+            color: white;
+            width: 90%;
+            text-align: center;
+        }
+
+        &__winlose{
+            //background-color: cyan;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            &__input{
+                background-color: #ee1b8c;
+                
+                
+            }
+            &__label{
+                color: white;
+                font-size: 1.5rem;
+            }
+        }
+
+        &__carMake-input{
+            text-decoration: none;
+            border: none;
+            outline: none;
+            text-align: center;
+
+            width: 15rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            font-size: 1.5rem;
+            background-color: rgba(10 , 211 , 255 , 0.45);
+            color: rgba(255, 255, 255, 0.773);
+            &::placeholder{
+                color: rgba(255, 255, 255, 0.773);
+            }
+
+            &:focus{
+             background-color:  rgba(10, 210, 255, 0.747);
+            }
+            transition: linear .2s;
+        }
+
+        &__carModel-input{
+            text-decoration: none;
+            border: none;
+            outline: none;
+            text-align: center;
+
+            width: 15rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            font-size: 1.5rem;
+            background-color: rgba(10 , 211 , 255 , 0.45);
+            color: rgba(255, 255, 255, 0.773);
+            &::placeholder{
+                color: rgba(255, 255, 255, 0.773);
+            }
+
+            &:focus{
+             background-color:  rgba(10, 210, 255, 0.747);
+            }
+            transition: linear .2s;
+        }
+
+
+        &__carHp-input{
+            text-decoration: none;
+            border: none;
+            outline: none;
+            text-align: center;
+
+            width: 15rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            font-size: 1.5rem;
+            background-color: rgba(10 , 211 , 255 , 0.45);
+            color: rgba(255, 255, 255, 0.773);
+            &::placeholder{
+                color: rgba(255, 255, 255, 0.773);
+            }
+
+            &:focus{
+             background-color:  rgba(10, 210, 255, 0.747);
+            }
+            transition: linear .2s;
+        }
+        &__speed-input{
+            text-decoration: none;
+            border: none;
+            outline: none;
+            text-align: center;
+
+            width: 15rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            font-size: 1.5rem;
+            background-color: rgba(10 , 211 , 255 , 0.45);
+            color: rgba(255, 255, 255, 0.773);
+            &::placeholder{
+                color: rgba(255, 255, 255, 0.773);
+            }
+
+            &:focus{
+             background-color:  rgba(10, 210, 255, 0.747);
+            }
+            transition: linear .2s;
+        }
+
+        &__btn{
+            border: none;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+            width: 8rem;
+            height: 3rem;
+            border-radius: 2.1rem;
+            background-color: #ee1b8c;
+            color : #fff;
+            
+            
+            letter-spacing: 0.05em;
+            &:hover{
+                // transform: scale(1.06);
+                 -webkit-box-shadow: 0px 0px 10px 7px rgba(10,211,255,0.57);
+                 -moz-box-shadow: 0px 0px 10px 7px rgba(10,211,255,0.57);
+                 box-shadow: 0px 0px 15px 7px rgba(10,211,255,0.57);
+
+             }
+             &:active{
+                 transform: scale(0.98);
+                 -webkit-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                 -moz-box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+                 box-shadow: 0px 0px 1px 0px rgba(10,211,255,0.57);
+
+                 transition: ease-in-out .09s;
+             }
+             transition: ease-in-out .3s;
+        }
+
+        &__back{
+            position: absolute;
+            left: -1rem;
+            bottom: -1rem;
+            width: 5rem;
+            cursor: pointer;
+        }
+
+    }
+}
+
+.plus-button-add-race{
+    z-index: 10;
+    position: absolute;
+    right: 3rem;
+    top: 10rem;
+    transition: ease-in-out .1s;
+
+    &:hover{
+        transform: scale(1.1);
+        
+    }
+}

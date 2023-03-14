@@ -12,6 +12,9 @@ Arjun Questions
     -Trying to select the parent when hovering a child but getting confused with selector and scc & included classes 
     (loginForm.scss )
 
+    -My add race call is working and populating the back end but I get an error anyways ? but not on the front end 
+    the error only shows on the back end
+
 
 
 
@@ -29,10 +32,13 @@ TODO
 
         //LEFT TODO MARCH
 
-          //Hook up the Google maps api 
-          //Create a new component (AddRace) which will use the google maps api to add new races to the back end 
-          //Add error handling on the front end so a user knows whats going on (wrong login credential Server error etc.)
+          //And loading animations for login and map start up 
+          // add all races to the map 
+          // make sure adding a race works 
+          // and onClick handler's to each race so that they can be focused on easily 
+        
           //final pass Make sure everything is gucci prior to launch (anim work / new - updated scss)
+
 
           //ETA Sunday March 12 for completion will launch sometime that week
 
@@ -189,3 +195,173 @@ const UserSchema = new Schema({
 });
 
 module.exports = mongoose.model('User', UserSchema);
+
+
+
+
+//machine assited styles (with my own twist on values)
+  const darkTheme = [  {    featureType: 'all',    elementType: 'labels.text.fill',    stylers: [      {        saturation: 36,      },      {        color: '#ffffff',      },      {        lightness: 40,      },    ],
+  },
+  {
+    featureType: 'all',
+    elementType: 'labels.text.stroke',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 16,
+      },
+    ],
+  },
+  {
+    featureType: 'all',
+    elementType: 'labels.icon',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'administrative',
+    elementType: 'geometry.fill',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 20,
+      },
+    ],
+  },
+  {
+    featureType: 'administrative',
+    elementType: 'geometry.stroke',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 17,
+      },
+      {
+        weight: 1.2,
+      },
+    ],
+  },
+  {
+    featureType: 'landscape',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 20,
+      },
+    ],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 21,
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.fill',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 17,
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 29,
+      },
+      {
+        weight: 0.2,
+      },
+    ],
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 18,
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    elementType: 'geometry.stroke',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 16,
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    elementType: 'geometry.fill',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 16,
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#000000',
+      },
+      {
+        lightness: 19,
+      },
+    ],
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#1c1c1c',
+      },
+      {
+        lightness: 17,
+      },
+    ],
+  },
+];

@@ -1,10 +1,6 @@
 
 
 
-
-
-
-
     //OBJECT STRUCTURE 
         //Data returned from the backend (request object data pending knowledge on authentication)
         // {
@@ -19,8 +15,8 @@
         //         {
         //             status : "win / lose perhaps in the form of true or false",
         //             topspeed: "top speed achieved during the race (Optional)",
-        //             start : "starting coords whatever format google map api needs",
-        //             finish : "ending coords whatever format google map api needs",
+        //              start : {lat : 0.222 , lng : 1,00},
+        //              finish : {lat : 0.222 , lng : 1,00},
         //              carMake : "user's car make ie: Honda",
         //              carModel : "User's car model ie : Type R",
         //              hp : "user's car horsepower ie : 305",
@@ -35,8 +31,8 @@
         //         {
         //             status : "win / lose perhaps in the form of true or false",
         //             topspeed: "top speed achieved during the race (Optional)",
-        //             start : "starting coords whatever format google map api needs",
-        //             finish : "ending coords whatever format google map api needs",
+        //             start : {lat : 0.222 , lng : 1,00},
+        //             finish : {lat : 0.222 , lng : 1,00},
         //             racer : {
         //                 carMake : "opponent car make",
         //                 carModel : "opponent car model",
@@ -48,8 +44,8 @@
         //         {
         //             status : "win / lose perhaps in the form of true or false",
         //             topspeed: "top speed achieved during the race (Optional)",
-        //             start : "starting coords whatever format google map api needs",
-        //             finish : "ending coords whatever format google map api needs",
+        //             start : {lat : 0.222 , lng : 1,00},
+        //             finish : {lat : 0.222 , lng : 1,00},
         //             racer : {
         //                 carMake : "opponent car make",
         //                 carModel : "opponent car model",
@@ -63,15 +59,11 @@
         // }
 
 
-//google api key : AIzaSyAwemI1ofx4QTEP02XsnbnovxyBAI_Rrks
-
-        //TODO still 
-        //add a notification  component (for later expansion)
-        //add create the edit info / show my info component 
 
     import SummarizedRace from "../components/SummarizedRace"
     import UserInfo from "../components/UserInfo"
     import dummyData from "../../data/dummyData.json"
+    import MapContainer from "../components/MapContainer"
     import { useState , useRef } from "react"
     import anime from "animejs"
     //logic to toast a user if something goes wrong with any of our async functions s
@@ -91,14 +83,16 @@
         const [focusedRace , setFocusedRace] = useState(props.userData.userRaces[0])
 
 
+        //we extract all the user's races into state so we can edit it further down in the map component and always have all of a user's races
+        const [userRaces , setUserRaces] = useState(props.userData.userRaces)
+
+
         //to open the edit card option 
         const [editUser , setEditUser] = useState(false)
 
         //state to keep track of user's profile changes without needing a new call to the backend
         const [userData , setUserData] = useState(props.userData.userInfo)
 
-        //props.userData.userInfo
-        //props.userData.userRaces[0]
         
         //animation code for this page 
     
@@ -110,8 +104,7 @@
             setEditUser(!editUser)
 
         }
-
-       
+   
 
 
         return(
@@ -231,8 +224,12 @@
                         { 
                             focusedRace ?
                             <div className="map-page__data-card__most-recent-races">
+                                <div className="map-page__data-card__most-recent-races__inner">
                                         {
-                                            props.userData.userRaces.map((race)=>{
+                                            //TODO ******* NEED TO CHANGE THAT TO USE THE STATE INSTEAD OF DIRECT PROPS
+                                            //ALSO NEEDED A WAY TO DELETE A RACE 
+                                            
+                                            userRaces.map((race)=>{
                                                 if(race === focusedRace){
                                                     return( <SummarizedRace
                                                     race={race}
@@ -251,6 +248,7 @@
                                                )
                                             })
                                         }
+                                </div>
                             </div>
                             :
                             <div className="map-page__data-card__placeholder">
@@ -296,20 +294,16 @@
                }
 
                 
-
-
-                {/*Need to begin using the google maps api before I can code this one*/}
-                <div className="map-page__add-race-card">
-
-                </div>
                 
 
                 {/*Place holder img for now */}
                 <div className="map-page-google-map-container">
-                    <img
-                    className="map-page-google-map-container-mapImg"
-                    src="#"
-                    />
+                   <MapContainer
+                   races={userRaces}
+                   addRace={setUserRaces}
+                   username={userData.username}
+                   userInfo={userData}
+                   />
                 </div>
 
 

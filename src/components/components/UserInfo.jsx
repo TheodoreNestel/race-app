@@ -120,8 +120,6 @@ export default function UserInfo(props){
 
             }))
 
-            //console.log(editCarMake , editCarModel , editUsername)
-
             //assemble all the data into a single object
             if(!newData)setUserData({
                 username : editUsername.username,

@@ -13,6 +13,8 @@
         align-items: center;
         flex-direction: column;
         margin-left: 2rem;
+        z-index: 1;
+        //pointer-events: all;
 
 
         box-shadow: 0 0 10px rgba(249, 2, 134, 0.858);
@@ -242,21 +244,29 @@
 
 
         &__most-recent-races{
-            //background-color: yellow;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-y: scroll;
-            flex-direction: column;
-            margin-top: 0.5rem;
-            gap: 1rem;
             height: 40%;
             width: 85%;
+            overflow-y: scroll;
             border-top: 2px solid #D72483;
-            //this selector doesnt work for some reason
-            &__race-box{
-                background-color: cyan;
-            }
+            margin-bottom: 2rem;
+           
+           &__inner{
+            
+             //background-color: yellow;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             
+             flex-direction: column;
+             margin-top: 0.5rem;
+             gap: 1rem;
+             
+             
+             //this selector doesnt work for some reason
+             &__race-box{
+                 background-color: cyan;
+             }
+           }
         }
 
         
