@@ -33,14 +33,9 @@ TODO
         //LEFT TODO MARCH
 
           //And loading animations for login and map start up 
-          // add all races to the map 
-          // make sure adding a race works 
-          // and onClick handler's to each race so that they can be focused on easily 
-        
+         
           //final pass Make sure everything is gucci prior to launch (anim work / new - updated scss)
 
-
-          //ETA Sunday March 12 for completion will launch sometime that week
 
 
 

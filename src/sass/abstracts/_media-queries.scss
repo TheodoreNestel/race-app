@@ -23,10 +23,12 @@
     @if $breakpoint == big-desktop { //if the arg is big-desktop then ->
         @media (min-width: 112.5em) {@content;} //apply the media query - 1800+ px 
     }
+
+    @if $breakpoint == short-desktop {
+        @media (min-height: 70em) {@content;}
+    }
     
 
-
-    //Order of changes : base + typo -> layout + grid -> page layout -> compo 
 
 
 }

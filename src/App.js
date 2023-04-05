@@ -1,9 +1,11 @@
 import MainPage from "./components/pages/MainPage";
 import MapPage from "./components/pages/MapPage";
+import MobilePage from "./components/pages/MobilePage";
 
 import dummyData from "./data/dummyData.json"
+import anime from "animejs";
 
-import { useState } from "react";
+import { useState  , useEffect} from "react";
 
 function App() {
 
@@ -15,22 +17,73 @@ function App() {
    //and we will drill the data into map page so it can populate the page with the user's data
 
 
-  //TODO here
-  //add the page switch logic 
+
+   const isMobile = window.innerWidth <= 768; //if the user is on mobile.
+
+
   const [page, setPage] = useState("mainPage");
   //we always start with this
+
+
+  //thsi state is used to check if our animation is playing or not
+  const [hasBlured, setHasBlured] = useState(false);
+
+
+  //////////////////////////////////////////////////////////////////
+
+  //animation that will play when we exit the main page 
+  
+
+  function blurPage(){
+    console.log("animation tried to run" , (hasBlured))
+    const timeline = anime.timeline({
+      easing: "easeOutExpo",
+      duration: 2000,
+    });
+
+    
+    // Define the blur animation
+    timeline.add({
+      targets: ".blur-div",
+      filter: ["blur(0px)", "blur(20px)"],
+    });
+
+    timeline.add({
+      targets: ".blur-div",
+      filter: ["blur(0px)"],
+    });
+
+
+
+
+  
+      timeline.play();
+      
+    
+    
+  }
+  
+
+  //////////////////////////////////////////////////////////////////
+
   
   const pages = {
-    mainPage: <MainPage setPage={setPage} setData={setRequestData}/>,
-    mapPage: <MapPage userData={requestData} setPage={setPage} />
+    mainPage: <MainPage setPage={setPage} setData={setRequestData} anim={blurPage}/>,
+    mapPage: <MapPage userData={requestData} setPage={setPage}  anim={blurPage} onLoad={()=> console.log("meow")}/>
   }
 
   
 
   return (
-    <div className="App">
-     {pages[page]}
-    </div>
+    <>
+
+    {
+      <div className="App blur-div">
+     {!isMobile ? pages[page] : <MobilePage/>}
+      </div>
+    }
+
+    </>
   );
 }
 

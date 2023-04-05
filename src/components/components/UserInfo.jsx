@@ -225,15 +225,15 @@ export default function UserInfo(props){
                 username : original.username,
                 updatedUser : userData
             }
-            console.log(dataUpdatePayload , "the payload")
+           
 
             try {
-                const response = await axios.put('http://localhost:9000/edituser', dataUpdatePayload);
-                console.log(response.data , "data back from put front end");
+                const response = await axios.put('https://race-app-backend.onrender.com/edituser', dataUpdatePayload);
+               
                 //return response.data;
               }
               catch (error) {
-                console.error(error , "no");
+               
                 toast.error(error.response.data.message)
               }
         }

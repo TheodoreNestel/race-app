@@ -1,73 +1,17 @@
 
 
 
-    //OBJECT STRUCTURE 
-        //Data returned from the backend (request object data pending knowledge on authentication)
-        // {
-        //     userInfo : {
-        //         username : "User's username",
-        //         carMake : "user's car make ie: Honda",
-        //         carModel : "User's car model ie : Type R",
-        //         hp : "user's car horsepower ie : 305",
-        //         userPfp : "/assets/user.png"
-        //     },
-        //     userRaces : [
-        //         {
-        //             status : "win / lose perhaps in the form of true or false",
-        //             topspeed: "top speed achieved during the race (Optional)",
-        //              start : {lat : 0.222 , lng : 1,00},
-        //              finish : {lat : 0.222 , lng : 1,00},
-        //              carMake : "user's car make ie: Honda",
-        //              carModel : "User's car model ie : Type R",
-        //              hp : "user's car horsepower ie : 305",
-        //             racer : {
-        //                 carMake : "opponent car make",
-        //                 carModel : "opponent car model",
-        //                 hp : "opponent car hp",
-        //                 racerPfp : "default img selected for unknown racers"
-        //             },
-        //             knownRacer : "blank if unregister racer otherwise : data in the same format as userInfo"
-        //         },
-        //         {
-        //             status : "win / lose perhaps in the form of true or false",
-        //             topspeed: "top speed achieved during the race (Optional)",
-        //             start : {lat : 0.222 , lng : 1,00},
-        //             finish : {lat : 0.222 , lng : 1,00},
-        //             racer : {
-        //                 carMake : "opponent car make",
-        //                 carModel : "opponent car model",
-        //                 hp : "opponent car hp",
-        //                 racerPfp : "default img selected for unknown racers"
-        //             },
-        //             knownRacer : "blank if unregister racer otherwise : data in the same format as userInfo"
-        //         },
-        //         {
-        //             status : "win / lose perhaps in the form of true or false",
-        //             topspeed: "top speed achieved during the race (Optional)",
-        //             start : {lat : 0.222 , lng : 1,00},
-        //             finish : {lat : 0.222 , lng : 1,00},
-        //             racer : {
-        //                 carMake : "opponent car make",
-        //                 carModel : "opponent car model",
-        //                 hp : "opponent car hp",
-        //                 racerPfp : "default img selected for unknown racers"
-        //             },
-        //             knownRacer : "blank if unregister racer otherwise : data in the same format as userInfo"
-        //         }
-
-        //     ]
-        // }
-
 
 
     import SummarizedRace from "../components/SummarizedRace"
     import UserInfo from "../components/UserInfo"
     import dummyData from "../../data/dummyData.json"
     import MapContainer from "../components/MapContainer"
-    import { useState , useRef } from "react"
+    import { useState , useRef , useEffect} from "react"
     import anime from "animejs"
     //logic to toast a user if something goes wrong with any of our async functions s
     import { toast , ToastContainer} from 'react-toastify';
+    import axios from "axios"
     import 'react-toastify/dist/ReactToastify.css';
     
 
@@ -80,11 +24,11 @@
 
        
         //we will store the current focused on race in state and use it fill out all the stuff 
-        const [focusedRace , setFocusedRace] = useState(props.userData.userRaces[0])
+        const [focusedRace , setFocusedRace] = useState(props.userData?.userRaces[0])
 
 
         //we extract all the user's races into state so we can edit it further down in the map component and always have all of a user's races
-        const [userRaces , setUserRaces] = useState(props.userData.userRaces)
+        const [userRaces , setUserRaces] = useState(props.userData?.userRaces)
 
 
         //to open the edit card option 
@@ -93,6 +37,49 @@
         //state to keep track of user's profile changes without needing a new call to the backend
         const [userData , setUserData] = useState(props.userData.userInfo)
 
+
+        //keep track of which race is focused on using its unique id provided by MongoDb
+        const [focusedId , setFocusedId] = useState(focusedRace?._id)
+
+        const [center , setCenter] = useState(null)
+
+
+
+        useEffect(()=>{
+            props.anim()
+        },[])
+
+
+
+        //async call to delete a race 
+
+        async function deleteRace() {
+            try {
+              const payload = {
+                username: userData.username,
+                deletedRaceId: focusedRace._id
+              };
+              // try to make a delete request to our backend
+            const res = await axios.delete('https://race-app-backend.onrender.com/delete', { data: payload });
+
+           
+              
+            const newArr = userRaces.filter((race) => {
+                return race._id !== payload.deletedRaceId;
+              });
+           
+             setUserRaces(
+                newArr
+             )
+
+            } catch(err) {
+              // lets the user know if something went wrong
+              console.log(err)
+            }
+          }
+          
+        
+       
         
         //animation code for this page 
     
@@ -104,7 +91,13 @@
             setEditUser(!editUser)
 
         }
-   
+
+
+        //useEffect to change the tracked id for other components to be able to know who is focused.
+        useEffect(()=>{
+            setFocusedId(focusedRace?._id)
+          
+        },[focusedRace])
 
 
         return(
@@ -139,7 +132,7 @@
                                     <img
                                     className="map-page__data-card__race-summary__result-head__user-icon"
                                     src={userData.userPfp}
-                                    style={{ borderColor: focusedRace.status ? "rgb(7, 255, 7)" : "red" }}
+                                    style={{ borderColor: focusedRace?.status ? "rgb(7, 255, 7)" : "red" }}
                                     />
                                     {/*This div contains the result title and the underline*/}
                                     <div className="map-page__data-card__race-summary__result-head__result-title-zone">
@@ -182,7 +175,7 @@
                                             {focusedRace.hp}
                                         </h4>
                                         <h3 className="map-page__data-card__race-summary__racer-data__hp__title">
-                                            HP
+                                             HP
                                         </h3>
                                         <h4 className="map-page__data-card__race-summary__racer-data__hp__racer-hp">
                                         {focusedRace.racer.hp}
@@ -197,7 +190,7 @@
                                         </h5>
 
                                         <h3 className="map-page__data-card__race-summary__racer-data__race-summary__speed">
-                                            Top speed: {focusedRace.topspeed ? focusedRace.topspeed : "..."}mph
+                                            Top speed: {focusedRace.topspeed ? focusedRace.topspeed : "..."} mph
                                         </h3>
 
                                         <h3 className="map-page__data-card__race-summary__racer-data__race-summary__distance">
@@ -206,6 +199,11 @@
 
                                     </div>
                                             
+                                            <img
+                                            src="/assets/x.png"
+                                            className="map-page__data-card__race-summary__racer-data__delete-btn"
+                                            onClick={()=> deleteRace() }
+                                            />
 
                                 </div>
                                
@@ -239,13 +237,13 @@
                                                     />)
 
                                                 }
-                                               return(
+                                               else{return(
                                                 <SummarizedRace
                                                     race={race}
                                                     user={userData.userPfp}
                                                     setRace={setFocusedRace}
                                                  />
-                                               )
+                                               )}
                                             })
                                         }
                                 </div>
@@ -303,6 +301,9 @@
                    addRace={setUserRaces}
                    username={userData.username}
                    userInfo={userData}
+                   focusId={focusedId}
+                   setFocus={setFocusedRace}
+                   center={center}
                    />
                 </div>
 

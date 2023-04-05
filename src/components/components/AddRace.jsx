@@ -33,13 +33,14 @@ const [whatDiv , setWhatDiv] =useState(false)
 async function addRace(payload){
     try{
         //try to make a post request to our backend
-        const res = await axios.post('http://localhost:9000/races' , payload)
+        const res = await axios.post('https://race-app-backend.onrender.com/races' , payload)
 
         //also we want to add the new race if we have a success to our mapPage so it can have the new data wihout needing to make a request
         let raceArr = [...props.races]
         raceArr.push(payload.race)
         props.addRace(raceArr)
-        console.log(raceArr , props.races , 'whats going on here')
+        //console.log(raceArr , props.races , 'whats going on here')
+        props.focus(payload.race)
 
         //if its successful close the component
         props.close(false);
@@ -78,13 +79,19 @@ function raceAssembler(){
     //then an asyn function would be called here to add the one new race 
     addRace(race)
 
+    //add to local none being to backend state 
+
+    props.reset()
+
+    
+
 }
 
 // {` Lat : ${props.start.lat} Lng : ${props.start.lng}`}
 
 //function to update our controlled inputs
 
-console.log(props.start)
+
 
 function truncate(input) {
     let input2 = input.toString()
@@ -202,7 +209,7 @@ function handleChange( setter , value){
                 </button>
                 <img 
                 className="map-page-google-map-container__Add-race-container__racer-info-div__back"
-                src="/assets/bell.png"
+                src="/assets/x.png"
                 onClick={()=> setWhatDiv(!whatDiv)}
                 />
             </div >

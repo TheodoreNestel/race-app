@@ -27,7 +27,7 @@ export default function MainPage(props){
             </div>
 
             <div className="main-page__forms">
-                <LoginForm setUserInfo={setFormData} setPage={props.setPage} setData={props.setData}/>
+                <LoginForm setUserInfo={setFormData} setPage={props.setPage} setData={props.setData} anim={props.anim}/>
             </div>
 
        </div>

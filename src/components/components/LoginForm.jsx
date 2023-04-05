@@ -42,13 +42,13 @@ export default function LoginForm(props){
     function handleChange(e){
 
 
-        setUsername(usernameRef.current.value)
-        setPassword(passwordRef.current.value)
-        setRepassword(passwordVerificationRef.current.value)
+        setUsername(usernameRef.current?.value)
+        setPassword(passwordRef.current?.value)
+        setRepassword(passwordVerificationRef.current?.value)
 
     
 
-       console.log(username, password ,"Local state" )
+      
     }
 
 
@@ -57,15 +57,19 @@ export default function LoginForm(props){
     //this function will attempt login if its successful it will return the all of the user's data
     async function tryLogin(loginCredentials){
 
-      console.log(loginCredentials)
+     
       try{
-       const res = await axios.post('http://localhost:9000/login' , loginCredentials)
-       console.log(res , "the returned res from server")
+        //run animation
+        props.anim()
+       const res = await axios.post('https://race-app-backend.onrender.com/login' , loginCredentials)
+     
+      
       props.setData(res.data) //this function will return a user's data so we can populate the map page
       props.setPage("mapPage")
      
       }
       catch(error){
+           //run animation // again but in reverse
         console.log(error , "error from our backend" , error.response.data.message)
         toast.error(error.response.data.message)
       }
@@ -79,8 +83,8 @@ export default function LoginForm(props){
 
     async function trySignup(signUpInfo){
       try{
-        const res = await axios.post('http://localhost:9000/signup',signUpInfo)
-        console.log(res.data)
+        const res = await axios.post('https://race-app-backend.onrender.com/signup',signUpInfo)
+        
         props.setData(res.data) //this function will return a user's data so we can populate the map page
         props.setPage("mapPage")
       }
